@@ -17,6 +17,3 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('houses', \App\Http\Controllers\HouseController::class);
-Route::get('/info', function () {
-    phpinfo();
-});
