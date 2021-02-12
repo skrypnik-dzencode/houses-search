@@ -1,3 +1,9 @@
+Install
+
+```composer insatll```
+
+```npm install && npm run dev```
+
 run migrations
 
 ```php artisan migrate```
