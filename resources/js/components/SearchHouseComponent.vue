@@ -61,12 +61,22 @@
         </div>
         <div class="row justify-content-center">
             <loading :active.sync="isLoading"></loading>
-            <house-card v-if="houses.length" v-for="house in houses" :house="house" v-bind:key="house.id"></house-card>
-            <div v-if="!houses.length" class="card mr-5 mt-4">
-                <div class="card-header">
-                    No result for this query
-                </div>
-            </div>
+            <table class="table table-striped">
+                <thead>
+                <th scope="col">Name</th>
+                <th scope="col">Prise</th>
+                <th scope="col">Bedrooms</th>
+                <th scope="col">Bathrooms</th>
+                <th scope="col">Storeys</th>
+                <th scope="col">Garages</th>
+                </thead>
+                <tbody>
+                <house-card v-if="houses.length" v-for="house in houses" :house="house" v-bind:key="house.id"></house-card>
+                <tr v-if="!houses.length">
+                    <td colspan="6" class="text-center">No result for this query</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </template>
@@ -74,6 +84,7 @@
 <script>
 import Loading from "vue-loading-overlay";
 import 'vue-loading-overlay/dist/vue-loading.css';
+
 export default {
     data: function () {
         return {
@@ -124,8 +135,8 @@ export default {
         },
         errorMessages: function (errors) {
             $.each(errors, function (key, val) {
-                let elem = $('#'+key+'Help')
-                $.each(val, function(k,v){
+                let elem = $('#' + key + 'Help')
+                $.each(val, function (k, v) {
                     elem.append(`<p>${v}</p>`)
                 })
             })
